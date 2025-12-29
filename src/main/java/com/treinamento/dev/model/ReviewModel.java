@@ -2,11 +2,15 @@ package com.treinamento.dev.model;
 
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -19,6 +23,11 @@ public class ReviewModel {
 
     @Column(nullable = false)
     private String comment;
+
+    @OneToOne
+    @JoinColumn(name = "book_id", nullable = false)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private BookModel book;
 
     public UUID getId() {
         return id;
@@ -35,5 +44,14 @@ public class ReviewModel {
     public void setComment(String comment) {
         this.comment = comment;
     }
+
+    public BookModel getBook() {
+        return book;
+    }
+
+    public void setBook(BookModel book) {
+        this.book = book;
+    }
+
     
 }

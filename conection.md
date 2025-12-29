@@ -8,6 +8,7 @@ spring.jpa.hibernate.ddl-auto=update
 
 spring.jpa.show-sql=true
 spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
+
 ## Neon Tech
 
 > * Original
@@ -17,7 +18,6 @@ spring.datasource.password=npg_BXMyDutZ70Kz
 spring.jpa.hibernate.ddl-auto=update
 
 > * Usado
-
 spring.datasource.url=jdbc:postgresql://ep-flat-scene-ac1854yd-pooler.sa-east-1.aws.neon.tech/neondb
 spring.datasource.username=neondb_owner
 spring.datasource.password=npg_BXMyDutZ70Kz

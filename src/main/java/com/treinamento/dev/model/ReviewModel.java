@@ -1,6 +1,5 @@
 package com.treinamento.dev.model;
 
-import java.io.Serializable;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
@@ -11,17 +10,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "TB_AUTHOR")
-public class AuthorModel implements Serializable {
-    private static final long serialVersionUID = 1L;
+@Table(name = "TB_REVIEW")
+public class ReviewModel {
 
-    @Id 
-    // UUID generation strategy
+    @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(nullable = false, unique = true)
-    private String name;
+    @Column(nullable = false)
+    private String comment;
 
     public UUID getId() {
         return id;
@@ -31,13 +28,14 @@ public class AuthorModel implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getComment() {
+        return comment;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
+    
     
 }

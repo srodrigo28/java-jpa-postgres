@@ -1,6 +1,8 @@
 package com.treinamento.dev.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
@@ -8,6 +10,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 /**
@@ -26,6 +32,18 @@ public class BookModel implements Serializable {
     @Column(nullable = false, unique = true, length = 100)
     private String title;
 
+    @ManyToOne // Relacionamento muitos para um com PublisherModel
+    @JoinColumn(name = "publisher_id", nullable = false)
+    private PublisherModel publisher;
+
+    @ManyToMany
+    @JoinTable(
+        name = "TB_BOOK_AUTHOR",
+        joinColumns = @JoinColumn(name = "book_id"),
+        inverseJoinColumns = @JoinColumn(name = "author_id")
+    )
+    private Set<AuthorModel> authors = new HashSet<>();
+
     public UUID getId() {
         return id;
     }
@@ -40,6 +58,22 @@ public class BookModel implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public PublisherModel getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(PublisherModel publisher) {
+        this.publisher = publisher;
+    }
+
+    public Set<AuthorModel> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(Set<AuthorModel> authors) {
+        this.authors = authors;
     }
     
 }
